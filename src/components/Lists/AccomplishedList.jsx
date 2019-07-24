@@ -10,10 +10,9 @@ export default function AccomplishedList(props){
     console.log(appData[todaysDate]);
     
     let tasks = [];
-    appData[todaysDate].forEach(task => {
+    appData[todaysDate] && appData[todaysDate].forEach(task => {
         tasks.push(<Task key={task.id} taskId={task.id}/>)
     });
-
 
     return (
         <div>

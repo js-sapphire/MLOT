@@ -3,8 +3,6 @@ import { Box, Flex, Button } from '@stardust-ui/react';
 import { AppContext } from './../../context/AppContext';
 const moment = require('moment');
 
-let thor = 4;
-
 export default function Task(props) {
     const [active, setActive] = React.useState(props.taskId ? false : true);
     const [taskId] = React.useState(props.taskId || Date.now());
@@ -31,7 +29,8 @@ export default function Task(props) {
                                 content: 'Nope',
                                 icon: 'coffee',
                                 onClick: () => {setActive(true); setAppData({type: 'REMOVE_TASK', task: {id: taskId}})},
-                                disabled: active,
+                                hidden: !props.taskId,
+                                disabled: active
                             }
                         ]}
                     />
