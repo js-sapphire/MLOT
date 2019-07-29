@@ -6,6 +6,7 @@
     "@stardust-ui/react": "^0.34.2",
     "moment": "^2.24.0",
     "react": "^16.8.6",
+    "react-day-picker": "^7.3.0",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"
   },
