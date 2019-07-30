@@ -1,19 +1,36 @@
 import * as React from "react";
 import { Box, Flex, Button } from "@stardust-ui/react";
 import { AppContext } from "./../../context/AppContext";
+const moment = require("moment");
 
 export default function Task(props) {
   const [active, setActive] = React.useState(props.taskId ? false : true);
   const [taskId] = React.useState(props.taskId || Date.now());
   const { setAppData } = React.useContext(AppContext);
-  const { accomplished } = props;
+  const { accomplished, dayToShow } = props;
+
+	const showNopeButton = () => {
+		if ( !accomplished ){
+			return false;
+		}
+		if ( dayToShow == moment().format('L')){
+			return true;
+		}
+		return false;
+	};
+
+	const showDoneButton = () => {
+		if(accomplished){
+			return false;
+		}
+		return true;
+	}
 
   return (
     <Box
       content={
         <div>
           Task {taskId}
-          {!accomplished && (
             <Flex gap="gap.smaller">
               <Button
                 circular
@@ -24,7 +41,8 @@ export default function Task(props) {
                   setActive(false);
                   setAppData({ type: "ADD_TASK", task: { id: taskId } });
                 }}
-                disabled={!active}
+								disabled={!active}
+								hidden = {!showDoneButton()}
               />
               <Button
                 key="coffee"
@@ -35,9 +53,9 @@ export default function Task(props) {
                   setAppData({ type: "REMOVE_TASK", task: { id: taskId } });
                 }}
                 disabled={active}
+                hidden={!showNopeButton()}
               />
             </Flex>
-          )}
         </div>
       }
       styles={{

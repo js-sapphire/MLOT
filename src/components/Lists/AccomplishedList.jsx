@@ -14,7 +14,7 @@ export default function AccomplishedList(props) {
     }
     appData[dayToShow] &&
       appData[dayToShow].forEach(task => {
-        tasks.push(<Task key={task.id} taskId={task.id} accomplished={true} />);
+        tasks.push(<Task key={task.id} taskId={task.id} accomplished={true} dayToShow={dayToShow}/>);
       });
   };
 

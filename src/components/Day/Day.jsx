@@ -18,7 +18,7 @@ export const Day = () => {
         <Box >
             <DayPicker onDayClick={handleDayClick}/>
             <List dayToShow={dayToShow}/>
-            <AccomplishedList dayToShow={dayToShow}/>}
+            <AccomplishedList dayToShow={dayToShow}/>
         </Box>
     );
 }
